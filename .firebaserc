@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "ionic-kickstart": {
+      "hosting": {
+        "app": [
+          "ionic-kickstart"
+        ]
+      }
+    }
+  }
+}

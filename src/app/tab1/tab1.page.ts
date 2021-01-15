@@ -33,34 +33,36 @@ export class Tab1Page {
   }
 
   requestPermission() {
-    // this.messagingService.requestPermission().subscribe(
-    //   async token => {
-    //     const toast = await this.toastCtrl.create({
-    //       message: 'Got your token',
-    //       duration: 2000
-    //     });
-    //     toast.present();
-    //   },
-    //   async (err) => {
-    //     const alert = await this.alertCtrl.create({
-    //       header: 'Error',
-    //       message: err,
-    //       buttons: ['OK'],
-    //     });
+    debugger
+    this.messagingService.requestPermission().subscribe(
+      async token => {
+        debugger
+        const toast = await this.toastCtrl.create({
+          message: 'Got your token',
+          duration: 2000
+        });
+        toast.present();
+      },
+      async (err) => {
+        const alert = await this.alertCtrl.create({
+          header: 'Error',
+          message: err,
+          buttons: ['OK'],
+        });
 
-    //     await alert.present();
-    //   }
-    // );
+        await alert.present();
+      }
+    );
 
-    this.afMessaging.requestToken // getting tokens
-      .subscribe(
-        (token) => { // USER-REQUESTED-TOKEN
-          console.log('Permission granted! Save to the server!', token);
-        },
-        (error) => {
-          console.error(error);
-        }
-      );
+    // this.afMessaging.requestToken // getting tokens
+    //   .subscribe(
+    //     (token) => { // USER-REQUESTED-TOKEN
+    //       console.log('Permission granted! Save to the server!', token);
+    //     },
+    //     (error) => {
+    //       console.error(error);
+    //     }
+    //   );
   }
 
   async deleteToken() {

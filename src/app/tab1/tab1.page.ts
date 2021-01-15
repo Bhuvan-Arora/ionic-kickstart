@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MessagingService } from '../services/messaging.service';
 import { AlertController, ToastController } from '@ionic/angular';
+import { AngularFireMessaging } from '@angular/fire/messaging';
 
 @Component({
   selector: 'app-tab1',
@@ -12,7 +13,8 @@ export class Tab1Page {
   constructor(
     private messagingService: MessagingService,
     private alertCtrl: AlertController,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private afMessaging: AngularFireMessaging
   ) {
     this.listenForMessages();
   }
@@ -31,24 +33,34 @@ export class Tab1Page {
   }
 
   requestPermission() {
-    this.messagingService.requestPermission().subscribe(
-      async token => {
-        const toast = await this.toastCtrl.create({
-          message: 'Got your token',
-          duration: 2000
-        });
-        toast.present();
-      },
-      async (err) => {
-        const alert = await this.alertCtrl.create({
-          header: 'Error',
-          message: err,
-          buttons: ['OK'],
-        });
+    // this.messagingService.requestPermission().subscribe(
+    //   async token => {
+    //     const toast = await this.toastCtrl.create({
+    //       message: 'Got your token',
+    //       duration: 2000
+    //     });
+    //     toast.present();
+    //   },
+    //   async (err) => {
+    //     const alert = await this.alertCtrl.create({
+    //       header: 'Error',
+    //       message: err,
+    //       buttons: ['OK'],
+    //     });
 
-        await alert.present();
-      }
-    );
+    //     await alert.present();
+    //   }
+    // );
+
+    this.afMessaging.requestToken // getting tokens
+      .subscribe(
+        (token) => { // USER-REQUESTED-TOKEN
+          console.log('Permission granted! Save to the server!', token);
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
   }
 
   async deleteToken() {

@@ -33,10 +33,8 @@ export class Tab1Page {
   }
 
   requestPermission() {
-    debugger
     this.messagingService.requestPermission().subscribe(
       async token => {
-        debugger
         const toast = await this.toastCtrl.create({
           message: 'Got your token',
           duration: 2000

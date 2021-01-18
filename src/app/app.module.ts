@@ -18,9 +18,7 @@ import { AngularFireMessagingModule } from '@angular/fire/messaging';
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
-    ServiceWorkerModule.register('combined-sw.js', {
-      enabled: environment.production,
-    }),
+    ServiceWorkerModule.register('combined-sw.js'),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireMessagingModule,
   ],

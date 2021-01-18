@@ -1,5 +1,6 @@
 importScripts('https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js');
 importScripts('https://www.gstatic.com/firebasejs/7.16.1/firebase-messaging.js');
+
 firebase.initializeApp({
     apiKey: "AIzaSyCb1Jj8G9v8Hc7STXdVUIe9a__kfEQLru0",
     authDomain: "ionic-kickstart.firebaseapp.com",
